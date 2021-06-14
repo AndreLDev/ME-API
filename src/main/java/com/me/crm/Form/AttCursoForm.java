@@ -1,13 +1,12 @@
-package org.digitalse.Curso.Form;
+package com.me.crm.Form;
 
 import java.util.Date;
 
-import org.digitalse.Curso.entity.Curso;
-import org.digitalse.Curso.repository.CursoRepository;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.me.crm.entity.Curso;
+import com.me.crm.repository.CursoRepository;
 
-public class AtualizaCursoForm {
+public class AttCursoForm {
 	private int id;
 	private String nome;
 	private String descricao;

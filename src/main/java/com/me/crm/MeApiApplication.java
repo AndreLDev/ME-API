@@ -1,13 +1,13 @@
-package org.digitalse.Curso;
+package com.me.crm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CursoApplication {
+public class MeApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CursoApplication.class, args);
+		SpringApplication.run(MeApiApplication.class, args);
 	}
 
 }

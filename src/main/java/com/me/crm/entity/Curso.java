@@ -1,13 +1,19 @@
-package org.digitalse.Curso.Form;
+package com.me.crm.entity;
 
 import java.util.Date;
 
-import org.digitalse.Curso.entity.Curso;
-import org.digitalse.Curso.repository.CursoRepository;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class CursoForm {
+@Entity
+public class Curso {
+	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	private String nome;
 	private String descricao;
 	private String emanta;
@@ -16,11 +22,7 @@ public class CursoForm {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataInicio;
 	private float valor;
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -61,13 +63,42 @@ public class CursoForm {
 		this.valor = valor;
 	}
 
+	public Curso(String nome, String descricao, String emanta, Date dataCadastro, Date dataInicio, float valor) {
+		this.setNome(nome);
+		this.setDescricao(descricao);
+		this.setEmanta(emanta);
+		this.setDataCadastro(dataCadastro);
+		this.setDataInicio(dataInicio);
+		this.setValor(valor);
+		
+	
+	}
+	
+	public Curso() {
+
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNome() {
 		return nome;
 	}
-
-	public Curso converter() {
-		return new Curso(nome, descricao, emanta, dataCadastro, dataInicio, valor);
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", ementa=" + emanta + ", dataCadastro=" + dataCadastro 
+				+ ", dataInicio=" + dataInicio + ", valor =" + valor + "]";
+	}
+	
+	
 	
 
 }

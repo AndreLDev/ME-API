@@ -1,4 +1,4 @@
-package org.digitalse.Curso.control;
+package com.me.crm.controller;
 
 
 
@@ -14,14 +14,6 @@ public class Home {
 	@RequestMapping("/")
 	@ResponseBody
 	public String hello() {
-		return "Cursos";
+		return "ME Cursos";
 	}
-	/*
-	 * @GetMapping
-	public ResponseEntity<FolhaDto> calcular(@RequestParam float salario){
-		return ResponseEntity.ok(new FolhaDto(salario));
-	}
-	
-	 */
-
 }

@@ -1,4 +1,4 @@
-package org.digitalse.Curso.model;
+package com.me.crm.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;

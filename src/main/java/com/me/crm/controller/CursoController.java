@@ -1,17 +1,10 @@
-package org.digitalse.Curso.control;
+package com.me.crm.controller;
 
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
-import org.digitalse.Curso.Form.AtualizaCursoForm;
-import org.digitalse.Curso.Form.CursoForm;
-import org.digitalse.Curso.dto.CursoDto;
-import org.digitalse.Curso.entity.Curso;
-import org.digitalse.Curso.repository.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,41 +13,49 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.me.crm.Form.AttCursoForm;
+import com.me.crm.Form.CursoForm;
+import com.me.crm.dto.CursoDto;
+import com.me.crm.entity.Curso;
+import com.me.crm.repository.CursoRepository;
 
 @RestController
 @RequestMapping("/curso")
 public class CursoController {
+	
 	@Autowired
 	private CursoRepository CursoRepository;
-	// Read - Ler
+	
 	@GetMapping
 	public List<CursoDto> listar(){
 		List<Curso> Cursos = CursoRepository.findAll();
 		return CursoDto.converter(Cursos);
 				
 	}
-	// Create -- Cadastrar
+
 	@PostMapping
-	@Transactional
+	@ResponseStatus(HttpStatus.CREATED)
 	public void salvar(@RequestBody CursoForm produtoForm) {
 		Curso Curso = produtoForm.converter();
 		CursoRepository.save(Curso);
 		
 		
 	}
-	// Delete -- Remover/apagar
+
 	@DeleteMapping("/{id}")
-	@Transactional
+	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<CursoDto> apagar(@PathVariable int id){
 		CursoRepository.deleteById(id);
 		return ResponseEntity.ok().build();
 	}
-	//Update -- Atualizar
+
+
 	@PutMapping("/{id}")
-	@Transactional
-	public ResponseEntity<CursoDto> atualizar(@PathVariable int id, @RequestBody AtualizaCursoForm apf){
+	@ResponseStatus(HttpStatus.UPGRADE_REQUIRED)
+	public ResponseEntity<CursoDto> atualizar(@PathVariable int id, @RequestBody AttCursoForm apf){
 		Optional<Curso> optional = CursoRepository.findById(id);
 		if(optional.isPresent()) {
 			Curso curso = apf.atualizar(id, CursoRepository);

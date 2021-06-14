@@ -1,14 +1,14 @@
-package org.digitalse.Curso.dto;
+package com.me.crm.dto;
 
 
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.digitalse.Curso.entity.Curso;
 import org.springframework.data.domain.Page;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.me.crm.entity.Curso;
 
 public class CursoDto {
 	private int id;
