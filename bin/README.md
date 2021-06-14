@@ -1,0 +1,2 @@
+# TextExtractSvc
+Service 
